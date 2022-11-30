@@ -11,8 +11,8 @@ I'll take win10 OS as an example:
 4: in the same file, change line 15 to your own project path, how to do this: 
       click resources folder, there is a subfolder called images, right click this folder, then select Copy Path/References..., 
       select Absolute Path; then copy this path to line 15 after codes "file.upload.dir=".
+      
 5: connect to your mySql database, then create a schema, it's name must be imooc_mall. How to do this:
-
       select Database on the right side of IDEA app window, then click + symbol, select Data source, then choose MySQL.
       IDEA shall now open a settings window for you, all you need to do is changing user and password to your own, 
       make sure you installed driver(IDEA will warn you if you not do so, simply follow the instruction and you are g2g)
