@@ -20,6 +20,7 @@ I'll take win10 OS as an example:
   
 6: run imooc_mall_local.sql file under resources folder(double click the file and then ctal+a to select all codes, right click and choose Execute(the one with green play button))
 
-Congratulations! You're all set up! It is best to do this step: open the main method, it's under src/main/java/, file is called MallApplication. Once you find this file, simply run it like a hello world progream :), then you should open your browser, type http://localhost:8083/#/index in the URL bar, press enter and you shall see the project!
+Congratulations! You're all set up! Now all you have to do is: 
+open the main method, it's under src/main/java/, file is called MallApplication. Once you find this file, simply run it like a hello world progream :), then you should open your browser, type http://localhost:8083/#/index in the URL bar, press enter and you shall see the project!
 
 Remember: KEEP IDEA RUNNING when you are showing or testing the project, because it is a local project.
