@@ -107,14 +107,14 @@ public class UserController {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
         User user = userService.login(userName, password);
-        //保存用户信息时，不保存密码
+        //Save user information without saving the password
         user.setPassword(null);
         session.setAttribute(Constant.IMOOC_MALL_USER, user);
         return ApiRestResponse.success(user);
     }
 
     /**
-     * 更新个性签名
+     * Update personality signature
      */
     @PostMapping("/user/update")
     @ResponseBody
@@ -132,7 +132,7 @@ public class UserController {
     }
 
     /**
-     * 登出，清除session
+     * Log out and clear session
      */
     @PostMapping("/user/logout")
     @ResponseBody
@@ -142,7 +142,7 @@ public class UserController {
     }
 
     /**
-     * 管理员登录接口
+     * Administrator login interface
      */
     @GetMapping("/adminLogin")
     @ResponseBody
@@ -156,47 +156,56 @@ public class UserController {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
         User user = userService.login(userName, password);
-        //校验是否是管理员
+        //Verify if you are an administrator
         if (userService.checkAdminRole(user)) {
-            //是管理员，执行操作
-            //保存用户信息时，不保存密码
+            //If you are an administrator, perform the operation
+            //Save user information without saving the password
             user.setPassword(null);
             session.setAttribute(Constant.IMOOC_MALL_USER, user);
             return ApiRestResponse.success(user);
         } else {
+            //throw error msg, alert user that do not log in this page with non-admin account
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_ADMIN);
         }
     }
 
     /**
-     * 发送邮件
+     * Send Email
      */
     @PostMapping("/user/sendEmail")
     @ResponseBody
     public ApiRestResponse sendEmail(@RequestParam("emailAddress") String emailAddress)
             throws ImoocMallException {
-        //检查邮件地址是否有效，检查是否已注册
+        //Check if the email address is valid
         boolean validEmailAddress = EmailUtil.isValidEmailAddress(emailAddress);
         if (validEmailAddress) {
+            //check if it is registered
             boolean emailPassed = userService.checkEmailRegistered(emailAddress);
             if (!emailPassed) {
+                //if it is registered， alert user with msg
                 return ApiRestResponse.error(ImoocMallExceptionEnum.EMAIL_ALREADY_BEEN_REGISTERED);
             } else {
+//                call Util class to generate a random verification code
                 String verificationCode = EmailUtil.genVerificationCode();
+
+//                call redis to prepare for sending email
                 Boolean saveEmailToRedis = emailService.saveEmailToRedis(emailAddress, verificationCode);
                 if (saveEmailToRedis) {
                     executorService.submit(new Runnable() {
                         @Override
+//                        make a new thread, achieving high concurrency
                         public void run() {
                             emailService.sendSimpleMessage(emailAddress, Constant.EMAIL_SUBJECT, "欢迎注册，您的验证码是" + verificationCode);
                         }
                     });
                     return ApiRestResponse.success();
                 } else {
+                    //email with codes already sent to user email
                     return ApiRestResponse.error(ImoocMallExceptionEnum.EMAIL_ALREADY_BEEN_SEND);
                 }
             }
         } else {
+//            did not pass email check
             return ApiRestResponse.error(ImoocMallExceptionEnum.WRONG_EMAIL);
         }
     }
@@ -212,14 +221,14 @@ public class UserController {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
         User user = userService.login(userName, password);
-        //保存用户信息时，不保存密码
+        //Save user information without saving the password
         user.setPassword(null);
         Algorithm algorithm = Algorithm.HMAC256(Constant.JWT_KEY);
         String token = JWT.create()
                 .withClaim(Constant.USER_NAME, user.getUsername())
                 .withClaim(Constant.USER_ID, user.getId())
                 .withClaim(Constant.USER_ROLE, user.getRole())
-                //过期时间
+                //Expiration time
                 .withExpiresAt(new Date(System.currentTimeMillis() + Constant.EXPIRE_TIME))
                 .sign(algorithm);
         return ApiRestResponse.success(token);
@@ -227,7 +236,7 @@ public class UserController {
 
 
     /**
-     * 管理员登录接口
+     * Administrator login interface
      */
     @GetMapping("/adminLoginWithJwt")
     @ResponseBody
@@ -241,17 +250,17 @@ public class UserController {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
         User user = userService.login(userName, password);
-        //校验是否是管理员
+        //Verify if you are an administrator
         if (userService.checkAdminRole(user)) {
-            //是管理员，执行操作
-            //保存用户信息时，不保存密码
+            //If you are an administrator, perform the operation
+            //Save user information without saving the password
             user.setPassword(null);
             Algorithm algorithm = Algorithm.HMAC256(Constant.JWT_KEY);
             String token = JWT.create()
                     .withClaim(Constant.USER_NAME, user.getUsername())
                     .withClaim(Constant.USER_ID, user.getId())
                     .withClaim(Constant.USER_ROLE, user.getRole())
-                    //过期时间
+                    //Expiration time
                     .withExpiresAt(new Date(System.currentTimeMillis() + Constant.EXPIRE_TIME))
                     .sign(algorithm);
             return ApiRestResponse.success(token);
