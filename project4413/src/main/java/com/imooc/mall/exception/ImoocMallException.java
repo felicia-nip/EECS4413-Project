@@ -1,7 +1,7 @@
 package com.imooc.mall.exception;
 
 /**
- * 描述：     统一异常
+ * RuntimeException(Overall exception)
  */
 public class ImoocMallException extends RuntimeException {
 

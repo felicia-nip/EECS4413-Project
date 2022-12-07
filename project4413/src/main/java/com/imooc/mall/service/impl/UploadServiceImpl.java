@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 描述：     上传服务实现类
+ *  Upload service implementation class
  */
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -27,7 +27,7 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public String uploadImage(MultipartFile file) throws IOException {
         String newFileName = getNewFileName(file);
-        //创建文件
+        //Create file
         File fileDirectory = new File(Constant.FILE_UPLOAD_DIR);
         File destFile = new File(Constant.FILE_UPLOAD_DIR + newFileName);
         createFile(file, fileDirectory, destFile);
@@ -43,7 +43,7 @@ public class UploadServiceImpl implements UploadService {
     public String getNewFileName(@RequestParam("file") MultipartFile multipartFile) {
         String fileName = multipartFile.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        //生成uuid
+        //generate uuid
         UUID uuid = UUID.randomUUID();
         return uuid.toString() + suffixName;
     }
@@ -52,10 +52,10 @@ public class UploadServiceImpl implements UploadService {
     public String uploadFile(MultipartFile file) {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        //生成文件名称UUID
+        // Generate file name UUID
         UUID uuid = UUID.randomUUID();
         String newFileName = uuid.toString() + suffixName;
-        //创建文件
+        // Create file
         File fileDirectory = new File(Constant.FILE_UPLOAD_DIR);
         File destFile = new File(Constant.FILE_UPLOAD_DIR + newFileName);
         createFile(file, fileDirectory, destFile);

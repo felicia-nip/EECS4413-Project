@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 描述：     商品Service
+ * Product Service
  */
 public interface ProductService {
 

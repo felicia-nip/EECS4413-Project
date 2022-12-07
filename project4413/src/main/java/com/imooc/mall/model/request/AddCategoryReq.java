@@ -5,22 +5,22 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * 描述：     AddCategoryReq
+ * Add Category Req
  */
 public class AddCategoryReq {
 
     @Size(min = 2, max = 5)
-    @NotNull(message = "name不能为null")
+    @NotNull(message = "name cannot be null")
     private String name;
 
-    @NotNull(message = "type不能为null")
+    @NotNull(message = "type cannot be null")
     @Max(3)
     private Integer type;
 
-    @NotNull(message = "parentId不能为null")
+    @NotNull(message = "parentId cannot be null")
     private Integer parentId;
 
-    @NotNull(message = "orderNum不能为null")
+    @NotNull(message = "orderNum cannot be null")
     private Integer orderNum;
 
     public String getName() {

@@ -1,7 +1,7 @@
 package com.imooc.mall.model.vo;
 
 /**
- * 描述：     CartVO，给前端展示用
+ * CartVO, for front-end display
  */
 public class CartVO {
 

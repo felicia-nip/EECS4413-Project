@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 描述：     上传服务
+ * Upload service
  */
 public interface UploadService {
 

@@ -43,7 +43,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * 描述：     订单Service实现类
+ * Order Service Implementation Class
  */
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -69,15 +69,15 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     UserService userService;
 
-    //数据库事务
+    //Database transactions
     @Transactional(rollbackFor = Exception.class)
     @Override
     public String create(CreateOrderReq createOrderReq) {
 
-        //拿到用户ID
+        //Get the user ID
         Integer userId = UserFilter.userThreadLocal.get().getId();
 
-        //从购物车查找已经勾选的商品
+        //Find selected items from the shopping cart
         List<CartVO> cartVOList = cartService.list(userId);
         ArrayList<CartVO> cartVOListTemp = new ArrayList<>();
         for (int i = 0; i < cartVOList.size(); i++) {
@@ -87,15 +87,15 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         cartVOList = cartVOListTemp;
-        //如果购物车已勾选的为空，报错
+        //If the shopping cart has been selected as empty, an error is reported
         if (CollectionUtils.isEmpty(cartVOList)) {
             throw new ImoocMallException(ImoocMallExceptionEnum.CART_EMPTY);
         }
-        //判断商品是否存在、上下架状态、库存
+        //Checking the existence, status and stock of products
         validSaleStatusAndStock(cartVOList);
-        //把购物车对象转为订单item对象
+        //Convert shopping cart object to order item object
         List<OrderItem> orderItemList = cartVOListToOrderItemList(cartVOList);
-        //扣库存
+        //Deducting inventory
         for (int i = 0; i < orderItemList.size(); i++) {
             OrderItem orderItem = orderItemList.get(i);
             Product product = productMapper.selectByPrimaryKey(orderItem.getProductId());
@@ -106,11 +106,11 @@ public class OrderServiceImpl implements OrderService {
             product.setStock(stock);
             productMapper.updateByPrimaryKeySelective(product);
         }
-        //把购物车中的已勾选商品删除
+        //Delete selected items from the shopping cart
         cleanCart(cartVOList);
-        //生成订单
+        //Generate orders
         Order order = new Order();
-        //生成订单号，有独立的规则
+        //Generate order numbers with independent rules
         String orderNo = OrderCodeFactory.getOrderCode(Long.valueOf(userId));
         order.setOrderNo(orderNo);
         order.setUserId(userId);
@@ -121,16 +121,16 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderStatus(OrderStatusEnum.NOT_PAID.getCode());
         order.setPostage(0);
         order.setPaymentType(1);
-        //插入到Order表
+        //Insert into Order table
         orderMapper.insertSelective(order);
 
-        //循环保存每个商品到order_item表
+        //Loop to save each item to the order_item table
         for (int i = 0; i < orderItemList.size(); i++) {
             OrderItem orderItem = orderItemList.get(i);
             orderItem.setOrderNo(order.getOrderNo());
             orderItemMapper.insertSelective(orderItem);
         }
-        //把结果返回
+        //Return the results
         return orderNo;
     }
 
@@ -156,7 +156,7 @@ public class OrderServiceImpl implements OrderService {
             CartVO cartVO = cartVOList.get(i);
             OrderItem orderItem = new OrderItem();
             orderItem.setProductId(cartVO.getProductId());
-            //记录商品快照信息
+            //Record product snapshot information
             orderItem.setProductName(cartVO.getProductName());
             orderItem.setProductImg(cartVO.getProductImage());
             orderItem.setUnitPrice(cartVO.getPrice());
@@ -171,11 +171,11 @@ public class OrderServiceImpl implements OrderService {
         for (int i = 0; i < cartVOList.size(); i++) {
             CartVO cartVO = cartVOList.get(i);
             Product product = productMapper.selectByPrimaryKey(cartVO.getProductId());
-            //判断商品是否存在，商品是否上架
+            //Check whether the product exists and whether the product is on the sale
             if (product == null || product.getStatus().equals(SaleStatus.NOT_SALE)) {
                 throw new ImoocMallException(ImoocMallExceptionEnum.NOT_SALE);
             }
-            //判断商品库存
+            //check product inventory
             if (cartVO.getQuantity() > product.getStock()) {
                 throw new ImoocMallException(ImoocMallExceptionEnum.NOT_ENOUGH);
             }
@@ -185,11 +185,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderVO detail(String orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        //订单不存在，则报错
+        //If the order does not exist, an error is reported
         if (order == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NO_ORDER);
         }
-        //订单存在，需要判断所属
+        //The order exists and what needs to be decided is to belong to which user
         Integer userId = UserFilter.userThreadLocal.get().getId();
         if (!order.getUserId().equals(userId)) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NOT_YOUR_ORDER);
@@ -201,7 +201,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderVO getOrderVO(Order order) {
         OrderVO orderVO = new OrderVO();
         BeanUtils.copyProperties(order, orderVO);
-        //获取订单对应的orderItemVOList
+        //Get the orderItemVOList corresponding to the order
         List<OrderItem> orderItemList = orderItemMapper.selectByOrderNo(order.getOrderNo());
         List<OrderItemVO> orderItemVOList = new ArrayList<>();
         for (int i = 0; i < orderItemList.size(); i++) {
@@ -239,12 +239,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void cancel(String orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        //查不到订单，报错
+        //Can't find the order, report an error
         if (order == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NO_ORDER);
         }
-        //验证用户身份
-        //订单存在，需要判断所属
+        //Verify the user's identity
+        //Order exists, need to determine belongings
         Integer userId = UserFilter.userThreadLocal.get().getId();
         if (!order.getUserId().equals(userId)) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NOT_YOUR_ORDER);
@@ -256,8 +256,8 @@ public class OrderServiceImpl implements OrderService {
         } else {
             throw new ImoocMallException(ImoocMallExceptionEnum.CANCEL_WRONG_ORDER_STATUS);
         }
-        //恢复商品库存
-        //获取订单对应的orderItemList
+        //restore product inventory
+        //Get the orderItemList corresponding to the order
         List<OrderItem> orderItemList = orderItemMapper.selectByOrderNo(order.getOrderNo());
         for (int i = 0; i < orderItemList.size(); i++) {
             OrderItem orderItem = orderItemList.get(i);
@@ -292,7 +292,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void pay(String orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        //查不到订单，报错
+        //Can't find the order, report an error
         if (order == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NO_ORDER);
         }
@@ -315,11 +315,11 @@ public class OrderServiceImpl implements OrderService {
         return pageInfo;
     }
 
-    //发货
+    //Shipping
     @Override
     public void deliver(String orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        //查不到订单，报错
+        //Can't find the order, report an error
         if (order == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NO_ORDER);
         }
@@ -335,16 +335,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void finish(String orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
-        //查不到订单，报错
+        //Can't find the order, report an error
         if (order == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NO_ORDER);
         }
-        //如果是普通用户，就要校验订单的所属
+        //If the user is a regular user, verify if that the order belongs to this user
         if (!userService.checkAdminRole(UserFilter.userThreadLocal.get()) && !order.getUserId()
                 .equals(UserFilter.userThreadLocal.get().getId())) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NOT_YOUR_ORDER);
         }
-        //发货后可以完结订单
+        //Orders can be completed after shipment
         if (order.getOrderStatus() == OrderStatusEnum.DELIVERED.getCode()) {
             order.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
             order.setEndTime(new Date());

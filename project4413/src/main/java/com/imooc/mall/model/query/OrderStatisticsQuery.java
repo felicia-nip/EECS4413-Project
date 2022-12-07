@@ -3,7 +3,7 @@ package com.imooc.mall.model.query;
 import java.util.Date;
 
 /**
- * 描述：     订单量统计的Query
+ *  Query for order quantity statistics
  */
 public class OrderStatisticsQuery {
 

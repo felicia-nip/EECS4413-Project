@@ -31,7 +31,7 @@ public class UpdateProductReq {
                 '}';
     }
 
-    @Min(value = 1, message = "价格不能小于1分")
+    @Min(value = 1, message = "Price cannot be less than 1 cents")
     private Integer price;
 
     public Integer getId() {
@@ -42,7 +42,7 @@ public class UpdateProductReq {
         this.id = id;
     }
 
-    @Max(value = 10000, message = "库存不能大于10000")
+    @Max(value = 10000, message = "Inventory cannot be greater than 10,000")
     private Integer stock;
 
     private Integer status;

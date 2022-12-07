@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * 描述：     商品服务实现类
+ * Product service implementation
  */
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void update(Product updateProduct) {
         Product productOld = productMapper.selectByName(updateProduct.getName());
-        //同名且不同id，不能继续修改
+        //Same name and different id, can not continue to modify
         if (productOld != null && !productOld.getId().equals(updateProduct.getId())) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NAME_EXISTED);
         }
@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Integer id) {
         Product productOld = productMapper.selectByPrimaryKey(id);
-        //查不到该记录，无法删除
+        //The record cannot be found and cannot be deleted
         if (productOld == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.DELETE_FAILED);
         }
@@ -102,17 +102,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public PageInfo list(ProductListReq productListReq) {
-        //构建Query对象
+        //Constructing Query Objects
         ProductListQuery productListQuery = new ProductListQuery();
 
-        //搜索处理
+        //Search Processing
         if (!StringUtils.isEmpty(productListReq.getKeyword())) {
             String keyword = new StringBuilder().append("%").append(productListReq.getKeyword())
                     .append("%").toString();
             productListQuery.setKeyword(keyword);
         }
 
-        //目录处理：如果查某个目录下的商品，不仅是需要查出该目录下的，还要把所有子目录的所有商品都查出来，所以要拿到一个目录id的List
+        //Catalog processing: If you check the products under a certain catalog, not only need to check out the catalog, but also check out all the products in all sub-categories, so get a List of catalog ids
         if (productListReq.getCategoryId() != null) {
             List<CategoryVO> categoryVOList = categoryService
                     .listCategoryForCustomer(productListReq.getCategoryId());
@@ -122,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
             productListQuery.setCategoryIds(categoryIds);
         }
 
-        //排序处理
+        //Sorting
         String orderBy = productListReq.getOrderBy();
         if (ProductListOrderBy.PRICE_ORDER_ENUM.contains(orderBy)) {
             PageHelper

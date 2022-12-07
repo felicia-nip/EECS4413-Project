@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * 描述：     AddCategoryReq
+ * Add Category Req
  */
 public class UpdateCategoryReq {
 
-    @NotNull(message = "id不能为null")
+    @NotNull(message = "id cannot be null")
     private Integer id;
 
     @Size(min = 2, max = 5)

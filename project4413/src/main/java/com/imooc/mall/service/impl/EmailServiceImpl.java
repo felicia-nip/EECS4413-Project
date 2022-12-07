@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
- * 描述：     EmailService实现类
+ *  Email Service Implementation Class
  */
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -51,7 +51,7 @@ public class EmailServiceImpl implements EmailService {
         boolean exists = bucket.isExists();
         if (exists) {
             String code = bucket.get();
-            //redis里存储的验证码，和用户传过来的一致，则校验通过
+            //If the verification code stored in redis is the same as the one passed by the user, the verification passes
             if (code.equals(verificationCode)) {
                 return true;
             }

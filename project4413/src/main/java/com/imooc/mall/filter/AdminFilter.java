@@ -34,7 +34,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
 
 /**
- * 描述：     管理员校验过滤器
+ * Administrator verification filter
  */
 public class AdminFilter implements Filter {
 
@@ -80,14 +80,14 @@ public class AdminFilter implements Filter {
                 currentUser.setUsername(jwt.getClaim(Constant.USER_NAME).asString());
                 UserFilter.userThreadLocal.set(currentUser);
             } catch (TokenExpiredException e) {
-                //token过期，抛出异常
+                //token expires, throwing an exception
                 throw new ImoocMallException(ImoocMallExceptionEnum.TOKEN_EXPIRED);
             } catch (JWTDecodeException e) {
-                //解码失败，抛出异常
+                //Decode failed, exception thrown
                 throw new ImoocMallException(ImoocMallExceptionEnum.TOKEN_WRONG);
             }
 
-            //校验是否是管理员
+            //Verify if you are an administrator
             boolean adminRole = userService.checkAdminRole(currentUser);
             if (adminRole) {
                 filterChain.doFilter(servletRequest, resp);

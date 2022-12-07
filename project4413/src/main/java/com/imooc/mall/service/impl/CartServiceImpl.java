@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 描述：     购物车Service实现类
+ * Shopping cart Service implementation class
  */
 @Service
 public class CartServiceImpl implements CartService {
@@ -42,7 +42,7 @@ public class CartServiceImpl implements CartService {
 
         Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
         if (cart == null) {
-            //这个商品之前不在购物车里，需要新增一个记录
+            //This item was not in the cart before, you need to add a new record
             cart = new Cart();
             cart.setProductId(productId);
             cart.setUserId(userId);
@@ -50,7 +50,7 @@ public class CartServiceImpl implements CartService {
             cart.setSelected(Constant.Cart.SELECTED);
             cartMapper.insertSelective(cart);
         } else {
-            //这个商品已经在购物车里了，则数量相加
+            //If this item is already in the shopping cart, the quantities are summed
             count = cart.getQuantity() + count;
             Cart cartNew = new Cart();
             cartNew.setQuantity(count);
@@ -65,11 +65,11 @@ public class CartServiceImpl implements CartService {
 
     private void validProduct(Integer productId, Integer count) {
         Product product = productMapper.selectByPrimaryKey(productId);
-        //判断商品是否存在，商品是否上架
+        //Check whether the product exists and whether the product is on the sale
         if (product == null || product.getStatus().equals(SaleStatus.NOT_SALE)) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NOT_SALE);
         }
-        //判断商品库存
+        //Checking whether the goods are in stock
         if (count > product.getStock()) {
             throw new ImoocMallException(ImoocMallExceptionEnum.NOT_ENOUGH);
         }
@@ -81,10 +81,10 @@ public class CartServiceImpl implements CartService {
 
         Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
         if (cart == null) {
-            //这个商品之前不在购物车里，无法更新
+            //This item was not in the cart before and cannot be updated
             throw new ImoocMallException(ImoocMallExceptionEnum.UPDATE_FAILED);
         } else {
-            //这个商品已经在购物车里了，则更新数量
+            //If this item is already in the cart, update the quantity
             Cart cartNew = new Cart();
             cartNew.setQuantity(count);
             cartNew.setId(cart.getId());
@@ -100,10 +100,10 @@ public class CartServiceImpl implements CartService {
     public List<CartVO> delete(Integer userId, Integer productId) {
         Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
         if (cart == null) {
-            //这个商品之前不在购物车里，无法删除
+            //This item was not in the cart before and cannot be deleted
             throw new ImoocMallException(ImoocMallExceptionEnum.DELETE_FAILED);
         } else {
-            //这个商品已经在购物车里了，则可以删除
+            //If this item is already in the shopping cart, it can be deleted
             cartMapper.deleteByPrimaryKey(cart.getId());
         }
         return this.list(userId);
@@ -113,10 +113,10 @@ public class CartServiceImpl implements CartService {
     public List<CartVO> selectOrNot(Integer userId, Integer productId, Integer selected) {
         Cart cart = cartMapper.selectCartByUserIdAndProductId(userId, productId);
         if (cart == null) {
-            //这个商品之前不在购物车里，无法选择/不选中
+            //This item was not in the cart before and cannot be selected/unselected
             throw new ImoocMallException(ImoocMallExceptionEnum.UPDATE_FAILED);
         } else {
-            //这个商品已经在购物车里了，则可以选中/不选中
+            //If the item is already in the shopping cart, it can be selected/unselected
             cartMapper.selectOrNot(userId, productId, selected);
         }
         return this.list(userId);
@@ -124,7 +124,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartVO> selectAllOrNot(Integer userId, Integer selected) {
-        //改变选中状态
+        //Change selected state
         cartMapper.selectOrNot(userId, null, selected);
         return this.list(userId);
     }

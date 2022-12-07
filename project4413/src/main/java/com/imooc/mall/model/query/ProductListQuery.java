@@ -3,7 +3,7 @@ package com.imooc.mall.model.query;
 import java.util.List;
 
 /**
- * 描述：     查询商品列表的Query
+ * Query for product list
  */
 public class ProductListQuery {
 

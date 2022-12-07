@@ -20,7 +20,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 描述：     目录分类Service实现类
+ * Category Service Implementation Class
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -59,7 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(Integer id) {
         Category categoryOld = categoryMapper.selectByPrimaryKey(id);
-        //查不到记录，无法删除，删除失败
+        //Can't find the record, unable to delete, delete failed
         if (categoryOld == null) {
             throw new ImoocMallException(ImoocMallExceptionEnum.DELETE_FAILED);
         }
@@ -86,7 +86,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     private void recursivelyFindCategories(List<CategoryVO> categoryVOList, Integer parentId) {
-        //递归获取所有子类别，并组合成为一个“目录树”
+        //Recursively fetch all subcategories and combine them into a "directory tree"
         List<Category> categoryList = categoryMapper.selectCategoriesByParentId(parentId);
         if (!CollectionUtils.isEmpty(categoryList)) {
             for (int i = 0; i < categoryList.size(); i++) {

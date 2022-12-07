@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
- * 描述：     邮件Service
+ * Email Service
  */
 
 public interface EmailService {

@@ -7,7 +7,7 @@ import com.imooc.mall.model.vo.CategoryVO;
 import java.util.List;
 
 /**
- * 描述：     分类目录Service
+ * Category Service
  */
 public interface CategoryService {
 

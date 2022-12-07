@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 描述：     处理统一异常的handler
+ * Handling Global Exceptions
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     }
 
     private ApiRestResponse handleBindingResult(BindingResult result) {
-        //把异常处理为对外暴露的提示
+        //Handling exceptions as externally exposed hints
         List<String> list = new ArrayList<>();
         if (result.hasErrors()) {
             List<ObjectError> allErrors = result.getAllErrors();

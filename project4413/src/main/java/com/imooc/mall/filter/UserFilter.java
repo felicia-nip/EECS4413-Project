@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 /**
- * 描述：     用户过滤器
+ * User Filters
  */
 public class UserFilter implements Filter {
 
@@ -72,10 +72,10 @@ public class UserFilter implements Filter {
                 currentUser.setUsername(jwt.getClaim(Constant.USER_NAME).asString());
                 userThreadLocal.set(currentUser);
             } catch (TokenExpiredException e) {
-                //token过期，抛出异常
+                //token expires, throwing an exception
                 throw new ImoocMallException(ImoocMallExceptionEnum.TOKEN_EXPIRED);
             } catch (JWTDecodeException e) {
-                //解码失败，抛出异常
+                //Decode failed, exception thrown
                 throw new ImoocMallException(ImoocMallExceptionEnum.TOKEN_WRONG);
             }
 

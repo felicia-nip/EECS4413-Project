@@ -8,23 +8,23 @@ import org.mapstruct.MapperConfig;
 
 public class AddProductReq {
 
-    @NotNull(message = "商品名称不能为null")
+    @NotNull(message = "Product name cannot be null")
     private String name;
 
-    @NotNull(message = "商品图片不能为null")
+    @NotNull(message = "Product images cannot be null")
     private String image;
 
     private String detail;
 
-    @NotNull(message = "商品分类不能为null")
+    @NotNull(message = "Product category cannot be null")
     private Integer categoryId;
 
-    @NotNull(message = "商品价格不能为null")
-    @Min(value = 1, message = "价格不能小于1分")
+    @NotNull(message = "Product price cannot be null")
+    @Min(value = 1, message = "Price cannot be less than 1 cents")
     private Integer price;
 
-    @NotNull(message = "商品库存不能为null")
-    @Max(value = 10000, message = "库存不能大于10000")
+    @NotNull(message = "Product inventory cannot be null")
+    @Max(value = 10000, message = "Inventory cannot be greater than 10,000")
     private Integer stock;
 
     private Integer status;

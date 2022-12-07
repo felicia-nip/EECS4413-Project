@@ -6,7 +6,7 @@ import com.imooc.mall.model.vo.CartVO;
 import java.util.List;
 
 /**
- * 描述：     购物车Service
+ * Shopping Cart Service
  */
 public interface CartService {
 

@@ -3,7 +3,7 @@ package com.imooc.mall.model.vo;
 import java.util.Date;
 
 /**
- * 描述：     订单统计VO
+ * Order Count VO
  */
 public class OrderStatisticsVO {
 

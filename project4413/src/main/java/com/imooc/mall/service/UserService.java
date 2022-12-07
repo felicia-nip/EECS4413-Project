@@ -4,7 +4,7 @@ import com.imooc.mall.exception.ImoocMallException;
 import com.imooc.mall.model.pojo.User;
 
 /**
- * 描述：     UserService
+ * User Service
  */
 public interface UserService {
 
