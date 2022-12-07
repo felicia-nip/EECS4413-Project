@@ -3,10 +3,15 @@ package com.imooc.mall.util;
 import org.apache.poi.ss.usermodel.Cell;
 
 /**
- * 描述：     处理Excel
+ * Processing Excel
  */
 public class ExcelUtil {
 
+    /**
+     * get current cell's value in the cell.
+     * @param cell
+     * @return Object type value in cell.
+     */
     public static Object getCellValue(Cell cell) {
         switch (cell.getCellTypeEnum()) {
             case STRING:

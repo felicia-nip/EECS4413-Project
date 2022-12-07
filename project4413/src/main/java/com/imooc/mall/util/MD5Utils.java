@@ -14,8 +14,11 @@ public class MD5Utils {
     public MD5Utils() {
     }
 
+
     public static String getMD5Str(String strValue) throws NoSuchAlgorithmException {
+//       get MD5 algorithm
         MessageDigest md5 = MessageDigest.getInstance("MD5");
+//        8svbsvjkweDF,.03[ is the salt value, this ensures that the password stored on the DB is not the user's plaintext password
         return Base64.encodeBase64String(md5.digest((strValue + "8svbsvjkweDF,.03[").getBytes()));
     }
 
