@@ -11,11 +11,13 @@ import com.imooc.mall.model.pojo.User;
 import com.imooc.mall.service.EmailService;
 import com.imooc.mall.service.UserService;
 import com.imooc.mall.util.EmailUtil;
+
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 描述：     用户控制器
+ * User Controller
  */
 @Controller
 public class UserController {
@@ -47,53 +49,60 @@ public class UserController {
     }
 
     /**
-     * 注册
+     * register
      */
     @PostMapping("/register")
     @ResponseBody
     public ApiRestResponse register(@RequestParam("userName") String userName,
-            @RequestParam("password") String password, @RequestParam("emailAddress") String emailAddress,  @RequestParam("verificationCode") String verificationCode) throws ImoocMallException {
+                                    @RequestParam("password") String password, @RequestParam("emailAddress") String emailAddress, @RequestParam("verificationCode") String verificationCode) throws ImoocMallException {
+        //        if username is empty, then throw need username.
         if (StringUtils.isEmpty(userName)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_USER_NAME);
         }
+        //        if password is empty, then throw need password.
         if (StringUtils.isEmpty(password)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
-        //密码长度不能少于8位
+        //the length of password cannot less than 8 digits
         if (password.length() < 8) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.PASSWORD_TOO_SHORT);
         }
+        //        if email is empty, then throw need email.
         if (StringUtils.isEmpty(emailAddress)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_EMAIL_ADDRESS);
         }
+        //        if email verification code is empty, then throw need code.
         if (StringUtils.isEmpty(verificationCode)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_VERIFICATION_CODE);
         }
-        //如果邮箱已注册，则不允许再次注册
+        //If the mailbox is already registered, it is not allowed to register again
         boolean emailPassed = userService.checkEmailRegistered(emailAddress);
         if (!emailPassed) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.EMAIL_ALREADY_BEEN_REGISTERED);
         }
-        //校验邮箱和验证码是否匹配
+        //Check if the mailbox and verification code matches
         Boolean passEmailAndCode = emailService.checkEmailAndCode(emailAddress, verificationCode);
         if (!passEmailAndCode) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.WRONG_VERIFICATION_CODE);
         }
+//        process to register
         userService.register(userName, password, emailAddress);
         return ApiRestResponse.success();
     }
 
     /**
-     * 登录
+     * login
      */
     @GetMapping("/login")
     @ResponseBody
     public ApiRestResponse login(@RequestParam("userName") String userName,
-            @RequestParam("password") String password, HttpSession session)
+                                 @RequestParam("password") String password, HttpSession session)
             throws ImoocMallException {
+        //        if username is empty, then throw need username.
         if (StringUtils.isEmpty(userName)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_USER_NAME);
         }
+        //        if password is empty, then throw need password.
         if (StringUtils.isEmpty(password)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);
         }
@@ -138,7 +147,7 @@ public class UserController {
     @GetMapping("/adminLogin")
     @ResponseBody
     public ApiRestResponse adminLogin(@RequestParam("userName") String userName,
-            @RequestParam("password") String password, HttpSession session)
+                                      @RequestParam("password") String password, HttpSession session)
             throws ImoocMallException {
         if (StringUtils.isEmpty(userName)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_USER_NAME);
@@ -223,7 +232,7 @@ public class UserController {
     @GetMapping("/adminLoginWithJwt")
     @ResponseBody
     public ApiRestResponse adminLoginWithJwt(@RequestParam("userName") String userName,
-            @RequestParam("password") String password)
+                                             @RequestParam("password") String password)
             throws ImoocMallException {
         if (StringUtils.isEmpty(userName)) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_USER_NAME);
