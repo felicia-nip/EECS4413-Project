@@ -24,7 +24,7 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping("order/create")
-    @ApiOperation("创建订单")
+    @ApiOperation("创建单")
     public ApiRestResponse create(@RequestBody @Valid CreateOrderReq createOrderReq) {
         String orderNo = orderService.create(createOrderReq);
         return ApiRestResponse.success(orderNo);
