@@ -31,41 +31,41 @@ public class OrderController {
     }
 
     @GetMapping("order/detail")
-    @ApiOperation("前台订单详情")
+    @ApiOperation("Front End Order Details")
     public ApiRestResponse detail(@RequestParam String orderNo) {
         OrderVO orderVO = orderService.detail(orderNo);
         return ApiRestResponse.success(orderVO);
     }
 
     @GetMapping("order/list")
-    @ApiOperation("前台订单列表")
+    @ApiOperation("Front End Order List")
     public ApiRestResponse list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         PageInfo pageInfo = orderService.listForCustomer(pageNum, pageSize);
         return ApiRestResponse.success(pageInfo);
     }
 
     /**
-     * 订单取消
+     * Order Cancellation
      */
     @PostMapping("order/cancel")
-    @ApiOperation("前台取消订单")
+    @ApiOperation("Front End Order Cancellation")
     public ApiRestResponse cancel(@RequestParam String orderNo) {
         orderService.cancel(orderNo);
         return ApiRestResponse.success();
     }
 
     /**
-     * 生成支付二维码
+     * Generate payment QR code
      */
     @GetMapping("order/qrcode")
-    @ApiOperation("生成支付二维码")
+    @ApiOperation("Generate payment QR code")
     public ApiRestResponse qrcode(@RequestParam String orderNo) {
         String pngAddress = orderService.qrcode(orderNo);
         return ApiRestResponse.success(pngAddress);
     }
 
     @GetMapping("pay")
-    @ApiOperation("支付接口")
+    @ApiOperation("Payment Interface")
     public ApiRestResponse pay(@RequestParam String orderNo) {
         orderService.pay(orderNo);
         return ApiRestResponse.success();
