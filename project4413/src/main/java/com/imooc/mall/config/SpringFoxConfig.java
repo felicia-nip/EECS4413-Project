@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SpringFoxConfig {
 
-    //访问http://localhost:8083/swagger-ui.html可以看到API文档
+    //Visit http://localhost:8083/swagger-ui.html to see API Documentation
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -25,7 +25,7 @@ public class SpringFoxConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("慕慕生鲜")
+                .title("Fresh food supermarket")
                 .description("")
                 .termsOfServiceUrl("")
                 .build();

@@ -8,7 +8,7 @@ import java.util.ListIterator;
 import javax.validation.Valid;
 
 /**
- * 描述：     具有校验能力的List
+ * List with verification capability
  */
 public class ValidList<E> implements List<E> {
     @Valid

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 描述：     线程池配置
+ * Thread pool configuration
  */
 @Configuration
 public class ThreadPoolConfig {

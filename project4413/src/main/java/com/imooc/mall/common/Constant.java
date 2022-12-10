@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * 描述：     常量值
+ * Constant values
  */
 @Component
 public class Constant {
 
     public static final String IMOOC_MALL_USER = "imooc_mall_user";
     public static final String SALT = "8svbsvjkweDF,.03[";
-    public static final String EMAIL_SUBJECT = "您的验证码";
-    public static final String EMAIL_FROM = "1234554321@qq.com";
+    public static final String EMAIL_SUBJECT = "Your verification code";
+    public static final String EMAIL_FROM = "yujietang25@gmail.com";
     public static final String WATER_MARK_JPG = "watermark.jpg";
     public static final Integer IMAGE_SIZE = 400;
     public static final Float IMAGE_OPACITY = 0.5f;
@@ -35,22 +35,22 @@ public class Constant {
 
     public interface SaleStatus {
 
-        int NOT_SALE = 0;//商品下架状态
-        int SALE = 1;//商品上架状态
+        int NOT_SALE = 0;//Status of product
+        int SALE = 1;//Status of product
     }
 
     public interface Cart {
 
-        Integer NOT_SELECTED = 0;//购物车未选中
-        Integer SELECTED = 1;//购物车已选中
+        Integer NOT_SELECTED = 0;//Shopping cart not selected
+        Integer SELECTED = 1;//Shopping cart is selected
     }
 
     public enum OrderStatusEnum {
-        CANCELED(0, "用户已取消"),
-        NOT_PAID(10, "未付款"),
-        PAID(20, "已付款"),
-        DELIVERED(30, "已发货"),
-        FINISHED(40, "交易完成");
+        CANCELED(0, "User cancelled"),
+        NOT_PAID(10, "Unpaid"),
+        PAID(20, "Paid"),
+        DELIVERED(30, "Shipped"),
+        FINISHED(40, "Order completed");
 
         private String value;
         private int code;
@@ -98,5 +98,5 @@ public class Constant {
     public static final String USER_ID = "user_id";
     public static final String USER_NAME = "user_name";
     public static final String USER_ROLE = "user_role";
-    public static final Long EXPIRE_TIME = 60 * 1000 * 60 * 24 * 1000L;//单位是毫秒
+    public static final Long EXPIRE_TIME = 60 * 1000 * 60 * 24 * 1000L;//Unit is millisecond
 }

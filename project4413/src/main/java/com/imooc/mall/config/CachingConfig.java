@@ -10,7 +10,7 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 
 /**
- * 描述：     缓存的配置类
+ * Configuration class for the cache
  */
 @Configuration
 @EnableCaching

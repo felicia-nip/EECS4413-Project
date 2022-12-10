@@ -3,7 +3,7 @@ package com.imooc.mall.common;
 import com.imooc.mall.exception.ImoocMallExceptionEnum;
 
 /**
- * 描述：     通用返回对象
+ * A general return object
  */
 public class ApiRestResponse<T> {
 
