@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 描述：     订单Controller
+ * order Controller
  */
 @RestController
 public class OrderController {
