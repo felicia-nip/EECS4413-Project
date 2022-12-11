@@ -1038,7 +1038,7 @@
                         type: "text",
                         onClick: l.editFn
                     }, {default: (0, o.w5)((() => [Pa])), _: 1}, 8, ["onClick"])])])),
-                    default: (0, o.w5)((() => [(0, o.Wm)("div", Za, [Ka, (0, o.Wm)("div", _a, (0, x.zw)(i.name), 1)]), (0, o.Wm)("div", $a, [eo, (0, o.Wm)("div", to, (0, x.zw)(i.sign), 1)]), (0, o.Wm)("div", so, [ao, (0, o.Wm)("div", oo, (0, x.zw)("1" === i.role ? "普通用户" : "管理员"), 1)])])),
+                    default: (0, o.w5)((() => [(0, o.Wm)("div", Za, [Ka, (0, o.Wm)("div", _a, (0, x.zw)(i.name), 1)]), (0, o.Wm)("div", $a, [eo, (0, o.Wm)("div", to, (0, x.zw)(i.sign), 1)]), (0, o.Wm)("div", so, [ao, (0, o.Wm)("div", oo, (0, x.zw)("1" === i.role ? "Consumers" : "Administrators"), 1)])])),
                     _: 1
                 }), (0, o.Wm)(c), (0, o.Wm)(u, {
                     title: "Change personal information",
