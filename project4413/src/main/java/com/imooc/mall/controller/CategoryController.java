@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 描述：     目录Controller
+ * Category Controller
  */
 @Controller
 public class CategoryController {
@@ -38,9 +38,9 @@ public class CategoryController {
     CategoryService categoryService;
 
     /**
-     * 后台添加目录
+     * Add a category in the back-end
      */
-    @ApiOperation("后台添加目录")
+    @ApiOperation("")
     @PostMapping("admin/category/add")
     @ResponseBody
     public ApiRestResponse addCategory(HttpSession session,
@@ -50,10 +50,10 @@ public class CategoryController {
         if (currentUser == null) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_LOGIN);
         }
-        //校验是否是管理员
+        //Verify if you are an administrator
         boolean adminRole = userService.checkAdminRole(currentUser);
         if (adminRole) {
-            //是管理员，执行操作
+            //If you are an administrator, perform the operation
             categoryService.add(addCategoryReq);
             return ApiRestResponse.success();
         } else {
@@ -61,7 +61,7 @@ public class CategoryController {
         }
     }
 
-    @ApiOperation("后台更新目录")
+    @ApiOperation("Back-end Update Category")
     @PostMapping("admin/category/update")
     @ResponseBody
     public ApiRestResponse updateCategory(@Valid @RequestBody UpdateCategoryReq updateCategoryReq,
@@ -71,10 +71,10 @@ public class CategoryController {
         if (currentUser == null) {
             return ApiRestResponse.error(ImoocMallExceptionEnum.NEED_LOGIN);
         }
-        //校验是否是管理员
+        //Verify if you are an administrator
         boolean adminRole = userService.checkAdminRole(currentUser);
         if (adminRole) {
-            //是管理员，执行操作
+            //If you are an administrator, perform the operation
             Category category = new Category();
             BeanUtils.copyProperties(updateCategoryReq, category);
             categoryService.update(category);
@@ -84,7 +84,7 @@ public class CategoryController {
         }
     }
 
-    @ApiOperation("后台删除目录")
+    @ApiOperation("Delete category in the back-end")
     @PostMapping("admin/category/delete")
     @ResponseBody
     public ApiRestResponse deleteCategory(@RequestParam Integer id) {
@@ -92,7 +92,7 @@ public class CategoryController {
         return ApiRestResponse.success();
     }
 
-    @ApiOperation("后台目录列表")
+    @ApiOperation("Back-end Category List")
     @GetMapping("admin/category/list")
     @ResponseBody
     public ApiRestResponse listCategoryForAdmin(@RequestParam Integer pageNum,
@@ -101,7 +101,7 @@ public class CategoryController {
         return ApiRestResponse.success(pageInfo);
     }
 
-    @ApiOperation("前台目录列表")
+    @ApiOperation("Front-end Category List")
     @GetMapping("category/list")
     @ResponseBody
     public ApiRestResponse listCategoryForCustomer() {

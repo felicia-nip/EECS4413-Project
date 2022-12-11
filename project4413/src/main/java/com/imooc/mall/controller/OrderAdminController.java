@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 描述：     订单后台管理Controller
+ * Order Manager at Backend Controller
  */
 @RestController
 public class OrderAdminController {
@@ -24,7 +24,7 @@ public class OrderAdminController {
     OrderService orderService;
 
     @GetMapping("admin/order/list")
-    @ApiOperation("管理员订单列表")
+    @ApiOperation("Order List for Administrators")
     public ApiRestResponse listForAdmin(@RequestParam Integer pageNum,
             @RequestParam Integer pageSize) {
         PageInfo pageInfo = orderService.listForAdmin(pageNum, pageSize);
@@ -32,27 +32,27 @@ public class OrderAdminController {
     }
 
     /**
-     * 发货。订单状态流程：0用户已取消，10未付款，20已付款，30已发货，40交易完成
+     * Shipping. Order status process: 0 user cancelled, 10 unpaid, 20 paid, 30 shipped, 40 transaction complete
      */
     @PostMapping("admin/order/delivered")
-    @ApiOperation("管理员发货")
+    @ApiOperation("Shipping")
     public ApiRestResponse delivered(@RequestParam String orderNo) {
         orderService.deliver(orderNo);
         return ApiRestResponse.success();
     }
 
     /**
-     * 完结订单。订单状态流程：0用户已取消，10未付款，20已付款，30已发货，40交易完成。管理员和用户都可以调用
+     * Complete the order. Order status process: 0 user cancelled, 10 unpaid, 20 paid, 30 shipped, 40 transaction complete. Both administrators and users can call this method
      */
     @PostMapping("order/finish")
-    @ApiOperation("完结订单")
+    @ApiOperation("order completed")
     public ApiRestResponse finish(@RequestParam String orderNo) {
         orderService.finish(orderNo);
         return ApiRestResponse.success();
     }
 
     @GetMapping("admin/order/statistics")
-    @ApiOperation("每日订单量统计")
+    @ApiOperation("Daily order volume statistics")
     public ApiRestResponse statistics(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         List<OrderStatisticsVO> statistics = orderService.statistics(startDate, endDate);
         return ApiRestResponse.success(statistics);

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 描述：     后台商品管理Controller
+ *  Back-End Product Management Controller
  */
 @RestController
 @Validated
@@ -54,7 +54,7 @@ public class ProductAdminController {
     }
 
 
-    @ApiOperation("后台更新商品")
+    @ApiOperation("Back-end update products")
     @PostMapping("/admin/product/update")
     public ApiRestResponse updateProduct(@Valid @RequestBody UpdateProductReq updateProductReq) {
         Product product = new Product();
@@ -63,14 +63,14 @@ public class ProductAdminController {
         return ApiRestResponse.success();
     }
 
-    @ApiOperation("后台删除商品")
+    @ApiOperation("Delete products in the Back-End")
     @PostMapping("/admin/product/delete")
     public ApiRestResponse deleteProduct(@RequestParam Integer id) {
         productService.delete(id);
         return ApiRestResponse.success();
     }
 
-    @ApiOperation("后台批量上下架接口")
+    @ApiOperation("batch ppdate sell status")
     @PostMapping("/admin/product/batchUpdateSellStatus")
     public ApiRestResponse batchUpdateSellStatus(@RequestParam Integer[] ids,
             @RequestParam Integer sellStatus) {
@@ -78,7 +78,7 @@ public class ProductAdminController {
         return ApiRestResponse.success();
     }
 
-    @ApiOperation("后台商品列表接口")
+    @ApiOperation("Back-end product list interface")
     @GetMapping("/admin/product/list")
     public ApiRestResponse list(@RequestParam Integer pageNum,
             @RequestParam Integer pageSize) {
@@ -86,11 +86,11 @@ public class ProductAdminController {
         return ApiRestResponse.success(pageInfo);
     }
 
-    @ApiOperation("后台批量上传商品接口")
+    @ApiOperation("Back-end batch creating of products")
     @PostMapping("/admin/upload/product")
     public ApiRestResponse uploadProduct(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         String newFileName = uploadService.getNewFileName(multipartFile);
-        //创建文件
+        //Create file
         File fileDirectory = new File(Constant.FILE_UPLOAD_DIR);
         File destFile = new File(Constant.FILE_UPLOAD_DIR + newFileName);
         uploadService.createFile(multipartFile, fileDirectory, destFile);
@@ -108,12 +108,12 @@ public class ProductAdminController {
     }
 
 
-    @ApiOperation("后台批量更新商品")
+    @ApiOperation("Back-end batch update products")
     @PostMapping("/admin/product/batchUpdate")
     public ApiRestResponse batchUpdateProduct(@Valid @RequestBody List<UpdateProductReq> updateProductReqList) {
         for (int i = 0; i < updateProductReqList.size(); i++) {
             UpdateProductReq updateProductReq = updateProductReqList.get(i);
-            //方法一，手动校验
+            //Approach, manual verification
             if (updateProductReq.getPrice() < 1) {
                 throw new ImoocMallException(ImoocMallExceptionEnum.PRICE_TOO_LOW);
             }
@@ -127,7 +127,7 @@ public class ProductAdminController {
         return ApiRestResponse.success();
     }
 
-    @ApiOperation("后台批量更新商品，ValidList验证")
+    @ApiOperation("Batch update products in the Back-End，")
     @PostMapping("/admin/product/batchUpdate2")
     public ApiRestResponse batchUpdateProduct2(@Valid @RequestBody ValidList<UpdateProductReq> updateProductReqList) {
         for (int i = 0; i < updateProductReqList.size(); i++) {
@@ -140,7 +140,7 @@ public class ProductAdminController {
     }
 
 
-    @ApiOperation("后台批量更新商品，@Validated验证")
+    @ApiOperation("Back-end batch update products，ValidList Verification")
     @PostMapping("/admin/product/batchUpdate3")
     public ApiRestResponse batchUpdateProduct3(@Valid @RequestBody List<UpdateProductReq> updateProductReqList) {
         for (int i = 0; i < updateProductReqList.size(); i++) {
