@@ -226,7 +226,7 @@
                     class: "good-img",
                     src: e.image,
                     alt: ""
-                }, null, 8, ["src"])]), (0, o.Wm)("div", de, [(0, o.Wm)("div", ce, (0, x.zw)(e.name), 1), (0, o.Wm)("div", me, [(0, o.Wm)("span", ue, "￥" + (0, x.zw)(e.price / 100), 1)])])], 8, ["onClick"])))), 128))])])]), (0, o.Wm)(m)])
+                }, null, 8, ["src"])]), (0, o.Wm)("div", de, [(0, o.Wm)("div", ce, (0, x.zw)(e.name), 1), (0, o.Wm)("div", me, [(0, o.Wm)("span", ue, "$" + (0, x.zw)(e.price / 100), 1)])])], 8, ["onClick"])))), 128))])])]), (0, o.Wm)(m)])
             }));
             var ge = s.p + "img/logo.1d54bc5d.png",
                 he = "data:image/png;base64,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";
@@ -565,7 +565,7 @@
                     class: "detail-img",
                     style: {width: "540px", height: "304px"},
                     src: i.img
-                }, null, 8, ["src"]), (0, o.Wm)("div", Ot, [(0, o.Wm)("div", Qt, [(0, o.Wm)("div", Yt, " Product Name：" + (0, x.zw)(i.name), 1), (0, o.Wm)("div", Lt, " Other：" + (0, x.zw)(i.subName), 1)]), (0, o.Wm)("div", Bt, [(0, o.Wm)("div", Jt, "Selling Price：" + (0, x.zw)(i.money / 100) + "元", 1), (0, o.Wm)(r, {
+                }, null, 8, ["src"]), (0, o.Wm)("div", Ot, [(0, o.Wm)("div", Qt, [(0, o.Wm)("div", Yt, " Product Name：" + (0, x.zw)(i.name), 1), (0, o.Wm)("div", Lt, " Other：" + (0, x.zw)(i.subName), 1)]), (0, o.Wm)("div", Bt, [(0, o.Wm)("div", Jt, "Selling Price：" + (0, x.zw)(i.money / 100) + "$", 1), (0, o.Wm)(r, {
                     class: "buy",
                     type: "primary",
                     onClick: l.addFn
@@ -633,7 +633,7 @@
                         class: "button",
                         type: "text"
                     }, {
-                        default: _t((() => [(0, o.Wm)("a", {onClick: t => l.locationFn("/order_detail?orderId=" + e.orderNo)}, "订单详情", 8, ["onClick"])])),
+                        default: _t((() => [(0, o.Wm)("a", {onClick: t => l.locationFn("/order_detail?orderId=" + e.orderNo)}, "Order details", 8, ["onClick"])])),
                         _: 2
                     }, 1024)])])),
                     default: _t((() => [(0, o.Wm)("div", null, [((0, o.wg)(!0), (0, o.j4)(o.HY, null, (0, o.Ko)(e.orderItemVOList, ((e, t) => ((0, o.wg)(), (0, o.j4)("div", {
@@ -650,7 +650,7 @@
                         width: "160",
                         height: "90",
                         alt: ""
-                    }, null, 8, ["src"])])]), (0, o.Wm)("p", us, [(0, o.Wm)("a", {onClick: t => l.locationFn("/detail?id=" + e.productId)}, (0, x.zw)(e.productName), 9, ["onClick"])]), (0, o.Wm)("p", ps, "数量：" + (0, x.zw)(e.quantity), 1), (0, o.Wm)("p", gs, " $" + (0, x.zw)((e.unitPrice / 100).toFixed(2)), 1)])))), 128))])])),
+                    }, null, 8, ["src"])])]), (0, o.Wm)("p", us, [(0, o.Wm)("a", {onClick: t => l.locationFn("/detail?id=" + e.productId)}, (0, x.zw)(e.productName), 9, ["onClick"])]), (0, o.Wm)("p", ps, "amount：" + (0, x.zw)(e.quantity), 1), (0, o.Wm)("p", gs, " $" + (0, x.zw)((e.unitPrice / 100).toFixed(2)), 1)])))), 128))])])),
                     _: 2
                 }, 1024)))), 128))]), (0, o.Wm)("div", hs, [i.total > 0 ? ((0, o.wg)(), (0, o.j4)(c, {
                     key: 0,
@@ -661,7 +661,7 @@
                     total: i.total,
                     "current-page": i.current,
                     onCurrentChange: l.pageChange
-                }, null, 8, ["total", "current-page", "onCurrentChange"])) : (0, o.kq)("", !0)]), i.orders && 0 !== i.orders.length ? (0, o.kq)("", !0) : ((0, o.wg)(), (0, o.j4)("div", vs, " 暂无订单数据，请下单 "))]), (0, o.Wm)(m)])
+                }, null, 8, ["total", "current-page", "onCurrentChange"])) : (0, o.kq)("", !0)]), i.orders && 0 !== i.orders.length ? (0, o.kq)("", !0) : ((0, o.wg)(), (0, o.j4)("div", vs, " No order data, please place an order "))]), (0, o.Wm)(m)])
             }));
             var ws = s(1941), Ws = s.n(ws), ys = {
                 data() {
@@ -1193,7 +1193,7 @@
                     class: "good-img",
                     src: e.image,
                     alt: ""
-                }, null, 8, ["src"])]), (0, o.Wm)("div", Ho, [(0, o.Wm)("div", Fo, (0, x.zw)(e.name), 1), (0, o.Wm)("div", jo, [(0, o.Wm)("span", qo, "￥" + (0, x.zw)(e.price / 100), 1)])])], 8, ["onClick"])))), 128))]), (0, o.Wm)("div", Oo, [(0, o.Wm)(r, {
+                }, null, 8, ["src"])]), (0, o.Wm)("div", Ho, [(0, o.Wm)("div", Fo, (0, x.zw)(e.name), 1), (0, o.Wm)("div", jo, [(0, o.Wm)("span", qo, "$" + (0, x.zw)(e.price / 100), 1)])])], 8, ["onClick"])))), 128))]), (0, o.Wm)("div", Oo, [(0, o.Wm)(r, {
                     onCurrentChange: l.handleCurrentChange,
                     "current-page": i.current,
                     layout: " prev, pager, next",

@@ -15,15 +15,15 @@ SET NAMES utf8mb4;
 DROP TABLE IF EXISTS `imooc_mall_cart`;
 
 CREATE TABLE `imooc_mall_cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '购物车id',
-  `product_id` int(11) NOT NULL COMMENT '商品id',
-  `user_id` int(11) NOT NULL COMMENT '用户id',
-  `quantity` int(11) NOT NULL DEFAULT '1' COMMENT '商品数量',
-  `selected` int(11) NOT NULL DEFAULT '1' COMMENT '是否已勾选：0代表未勾选，1代表已勾选',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Shopping cart id',
+  `product_id` int(11) NOT NULL COMMENT 'Product id',
+  `user_id` int(11) NOT NULL COMMENT 'User id',
+  `quantity` int(11) NOT NULL DEFAULT '1' COMMENT 'Number of products',
+  `selected` int(11) NOT NULL DEFAULT '1' COMMENT 'Has the checkbox checked: 0 represents unchecked, 1 represents checked',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Create Time',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='购物车';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  COMMENT='Shopping Cart';
 
 
 
