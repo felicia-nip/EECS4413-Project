@@ -6,67 +6,67 @@
 
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+      <!--The console only outputs information at level and above (onMatch), the others are rejected outright (onMismatch) -->
       <ThresholdFilter level="info" onMatch="ACCEPT"
         onMismatch="DENY"/>
       <PatternLayout
         pattern="[%d{MM:dd HH:mm:ss.SSS}] [%level] [%logger{36}] - %msg%n"/>
     </Console>
 
-    <!--debug级别日志文件输出-->
+    <!--debug level log file output-->
     <RollingFile name="debug_appender" fileName="${baseDir}/debug.log"
       filePattern="${baseDir}/debug_%i.log.%d{yyyy-MM-dd}">
-      <!-- 过滤器 -->
+      <!-- Filter -->
       <Filters>
-        <!-- 限制日志级别在debug及以上在info以下 -->
+        <!-- Limit log levels to debug and above and below info -->
         <ThresholdFilter level="debug"/>
         <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
       </Filters>
-      <!-- 日志格式 -->
+      <!-- Log format -->
       <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
-      <!-- 策略 -->
+      <!-- Strategies -->
       <Policies>
-        <!-- 每隔一天转存 -->
+        <!-- Transfer every other day -->
         <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-        <!-- 文件大小 -->
+        <!-- File Size -->
         <SizeBasedTriggeringPolicy size="100 MB"/>
       </Policies>
     </RollingFile>
 
-    <!-- info级别日志文件输出 -->
+    <!-- info level log file output -->
     <RollingFile name="info_appender" fileName="${baseDir}/info.log"
       filePattern="${baseDir}/info_%i.log.%d{yyyy-MM-dd}">
-      <!-- 过滤器 -->
+      <!-- Filter -->
       <Filters>
-        <!-- 限制日志级别在info及以上在error以下 -->
+        <!-- Limit log levels to info and above and below error -->
         <ThresholdFilter level="info"/>
         <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
       </Filters>
-      <!-- 日志格式 -->
+      <!-- Log format -->
       <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
-      <!-- 策略 -->
+      <!-- Strategies -->
       <Policies>
-        <!-- 每隔一天转存 -->
+        <!-- Transfer every other day -->
         <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-        <!-- 文件大小 -->
+        <!-- File Size -->
         <SizeBasedTriggeringPolicy size="100 MB"/>
       </Policies>
     </RollingFile>
 
-    <!-- error级别日志文件输出 -->
+    <!-- Error level log file output -->
     <RollingFile name="error_appender" fileName="${baseDir}/error.log"
       filePattern="${baseDir}/error_%i.log.%d{yyyy-MM-dd}">
-      <!-- 过滤器 -->
+      <!-- Filter -->
       <Filters>
-        <!-- 限制日志级别在error及以上 -->
+        <!-- Limit log levels to error and above -->
         <ThresholdFilter level="error"/>
       </Filters>
-      <!-- 日志格式 -->
+      <!-- Log format -->
       <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
       <Policies>
-        <!-- 每隔一天转存 -->
+        <!-- Transfer every other day -->
         <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-        <!-- 文件大小 -->
+        <!-- File Size -->
         <SizeBasedTriggeringPolicy size="100 MB"/>
       </Policies>
     </RollingFile>
