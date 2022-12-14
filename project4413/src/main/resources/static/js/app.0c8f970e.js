@@ -62,7 +62,7 @@
                 }, {default: c((() => [A])), _: 1}, 8, ["onClick"])])])])
             }));
             var W = s(9669), y = s.n(W);
-            let k = "http://127.0.0.1:8083/";
+            let k = "http://3.17.55.75:8083/";
 
             function f(e) {
                 return !e || 200 !== e.status && 304 !== e.status && 400 !== e.status ? {
@@ -73,7 +73,7 @@
 
             function C(e) {
                 if (-404 !== e.status) {
-                    if (10007 === e.status) return console.log(window.location + "/login"), void (window.location.href = "http://127.0.0.1/#/login");
+                    if (10007 === e.status) return console.log(window.location + "/login"), void (window.location.href = "http://3.17.55.75/#/login");
                     if (9999 !== e.status) return e.status, e
                 }
             }
@@ -93,9 +93,9 @@
                         },
                         withCredentials: !0
                     }, {withCredentials: !0}).then((e => f(e))).then((e => C(e)));
-                    window.location.href = "http://127.0.0.1/#/login"
+                    window.location.href = "http://3.17.55.75/#/login"
                 }, get(e, t, s = 0) {
-                    return console.log("sessionStorage===", sessionStorage.getItem("token")), 0 !== s || sessionStorage.getItem("token") || (window.location.href = "http://127.0.0.1/#/login"), y()({
+                    return console.log("sessionStorage===", sessionStorage.getItem("token")), 0 !== s || sessionStorage.getItem("token") || (window.location.href = "http://3.17.55.75/#/login"), y()({
                         method: "get",
                         baseURL: k,
                         url: e,
@@ -934,7 +934,7 @@
                     type: "primary"
                 }, {default: Wa((() => [Ya])), _: 1}, 8, ["onClick"])])])])])])]), (0, o.Wm)(m)])
             }));
-            let Ba = "http://127.0.0.1:8083/";
+            let Ba = "http://3.17.55.75:8083/";
 
             function Ja(e) {
                 return !e || 200 !== e.status && 304 !== e.status && 400 !== e.status ? {
@@ -944,7 +944,7 @@
             }
 
             function Ea(e) {
-                if (-404 !== e.status && 9999 !== e.status) return 10007 === e.status ? (console.log(window.location), void (window.location.href = "http://127.0.0.1/#/login")) : (e.status, e)
+                if (-404 !== e.status && 9999 !== e.status) return 10007 === e.status ? (console.log(window.location), void (window.location.href = "http://3.17.55.75/#/login")) : (e.status, e)
             }
 
             y().interceptors.request.use((e => e), (e => Promise.reject(e))), y().interceptors.response.use((e => e), (e => Promise.resolve(e.response))), y().defaults.withCredentials = !0;
@@ -963,9 +963,9 @@
                         },
                         withCredentials: !0
                     }, {withCredentials: !0}).then((e => Ja(e))).then((e => Ea(e)));
-                    window.location.href = "http://127.0.0.1/#/login"
+                    window.location.href = "http://3.17.55.75/#/login"
                 }, get(e, t, s = 0) {
-                    return console.log("sessionStorage===", sessionStorage.getItem("token")), 0 !== s || sessionStorage.getItem("token") || (window.location.href = "http://127.0.0.1/#/login"), y()({
+                    return console.log("sessionStorage===", sessionStorage.getItem("token")), 0 !== s || sessionStorage.getItem("token") || (window.location.href = "http://3.17.55.75/#/login"), y()({
                         method: "get",
                         baseURL: Ba,
                         url: e,
