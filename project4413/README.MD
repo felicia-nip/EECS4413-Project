@@ -23,6 +23,6 @@ I'll take win10 OS as an example:
 Congratulations! You're all set up! now all you have to do is:
 
 open the main method, it's under src/main/java/, file is called MallApplication. Once you find this file, simply run it like a hello world progream :),
-then you should open your browser, type http://localhost:8083/#/index in the URL bar, press enter and you shall see the project!
+then you should open your browser, type http://localhost:8080/#/index in the URL bar, press enter and you shall see the project!
 
 Remember: KEEP IDEA and MallApplication.java is RUNNING when you are showing or testing the project, because it is a local project.
