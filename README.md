@@ -1,19 +1,19 @@
 # EECS4413-Project
 
-I strongly recommend that you test our web project in your browser via HTML pages so that you can get the best experience.
+Hi! welcome to I strongly recommend that you test our web project in your browser via HTML pages so that you can get the best experience.
 
 
 our project URL: 
-for main page:
+- for main page:
 http://47.88.57.165/#/index
 
-for admin manage system:
+- for admin manage system:
 http://47.88.57.165/admin/index.html#/
 
-for customer account:
+- for customer account:
 username:mumu	password:12345678
 
-for Admin account:
+- for Admin account:
 username:eecs4413	password:12345678
 
 
