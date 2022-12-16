@@ -22,7 +22,7 @@ username:eecs4413	password:12345678
 
 - Please do not modify these account info in database, as the password is MD5+salted encrypted, which do not store the paswd in plain text.
 
-- Please note that Our project contains quite a lot of images. I have switched on 50Mbps internet bandwidth, 
+- Please note that our project contains quite a lot of images. I have switched on 50Mbps internet bandwidth, 
  a high frequency of page refreshing may cause the quota to run out very quickly.
 
 - If you must refreshing the page many times, please enable your browser cache functionality, this could save quota.
