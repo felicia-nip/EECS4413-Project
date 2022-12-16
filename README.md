@@ -31,10 +31,12 @@ Congratulations! The set up for the project is now completed.
 
 ---
 
-III. How to Run the Project
+_III. How to Run the Project_
+
 1. Run the main application. To navigate to it, go through the following path: _project4413 -> src -> main -> java -> com.imooc.mall_. There will be a file called _MallApplication_. Run the file (you can do this by pressing the green play button at the top of the Intelliji Idea application). Open your preferred browser and enter in the link http://localhost:8080/#/index in the URL bar to see the website.
 
 ---
 
-IV. Deployed application on the cloud
+_IV. Deployed application on the cloud_
+
 As mentioned in the report, the link to our deployed application on the cloud is the following: http://47.88.57.165/#/index
