@@ -1,6 +1,8 @@
 # EECS4413-Project
 
-Hi! welcome to I strongly recommend that you test our web project in your browser via HTML pages so that you can get the best experience.
+Hi! welcome to EECS4413 team U project github pase! 
+
+I strongly recommend that you test our web project in your browser via HTML pages so that you can get the best user experience.
 
 
 our project URL: 
@@ -18,17 +20,17 @@ username:eecs4413	password:12345678
 
 
 
-Please do not modify these account info in database, as the password is MD5+salted encrypted, which do not store the paswd in plain text.
+- Please do not modify these account info in database, as the password is MD5+salted encrypted, which do not store the paswd in plain text.
 
-Please note that Our project contains quite a lot of images. I have switched on 50Mbps internet bandwidth, 
+- Please note that Our project contains quite a lot of images. I have switched on 50Mbps internet bandwidth, 
  a high frequency of page refreshing may cause the quota to run out very quickly.
 
-If you must refreshing the page many times, please enable your browser cache functionality, this could save quota.
+- If you must refreshing the page many times, please enable your browser cache functionality, this could save quota.
 
-If you find the server denies your request, please contact any of team member, the server may be offline for maintenance, 
+- If you find the server denies your request, please contact any of team member, the server may be offline for maintenance, 
 or the instance's firewall may not pass some IP addresses request.
 
-If you find the server takes too long to response your request(rare case), please contact us, we will restart the server.
+- If you find the server takes too long to response your request(rare case), please contact us, we will restart the server.
 
 
 
