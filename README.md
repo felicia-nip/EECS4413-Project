@@ -32,33 +32,12 @@ or the instance's firewall may not pass some IP addresses request.
 
 - If you find the server takes too long to response your request(rare case), please contact us, we will restart the server.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+---
+---
 
 How to set project in your local PC:
+
 _I. Applications/Systems used in the Project_
 
 - We have used Intelliji IDEA (Please note that you need the Ultimate version in order to run this project).
