@@ -27,7 +27,7 @@ username:eecs4413	password:12345678
 
 - If you must refreshing the page many times, please enable your browser cache functionality, this could save quota.
 
-- If you find the server denies your request, please contact any of team member, the server may be offline for maintenance, 
+- If you find the server denies your request, please contact any of team member to help, the server may be offline for maintenance, 
 or the instance's firewall may not pass some IP addresses request.
 
 - If you find the server takes too long to response your request(rare case), please contact us, we will restart the server.
