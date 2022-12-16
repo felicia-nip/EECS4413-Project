@@ -1,0 +1,126 @@
+I strongly recommend that you test our web project in your browser via HTML pages so that you can get the best experience.
+
+
+our project URL: 
+for main page:
+http://47.88.57.165/#/index
+
+for admin manage system:
+http://47.88.57.165/admin/index.html#/
+
+for customer account:
+username:mumu	password:12345678
+
+for Admin account:
+username:eecs4413	password:12345678
+
+
+
+Please do not modify these account info in database, as the password is MD5+salted encrypted, which do not store the paswd in plain text.
+
+Please note that Our project contains quite a lot of images. I have switched on 50Mbps internet bandwidth, 
+ a high frequency of page refreshing may cause the quota to run out very quickly.
+
+If you must refreshing the page many times, please enable your browser cache functionality, this could save quota.
+
+If you find the server denies your request, please contact any of team member, the server may be offline for maintenance, 
+or the instance's firewall may not pass some IP addresses request.
+
+If you find the server takes too long to response your request(rare case), please contact us, we will restart the server.
+
+for main page:
+To access project index HTML page:
+curl -X GET 'http://47.88.57.165/'
+
+To load and display 20 products in main page:
+curl -X GET 'http://47.88.57.165/product/list?keyword=&orderBy=price+asc&categoryId=7&pageSize=20&pageNum=1'
+
+To login via account: userName=mumu, password=12345678:
+curl -X GET 'http://47.88.57.165/login?userName=mumu&password=12345678'
+
+To login via account under JWT: userName=mumu, password=12345678:
+curl -X GET 'http://47.88.57.165/loginWithJwt?userName=mumu&password=12345678'
+
+To update user's personal signature(comments):
+curl -X POST 'http://47.88.57.165/user/update?signature=Moving+forward+with+courage'
+
+To see user's all orders:
+curl -X GET 'http://47.88.57.165/order/list?pageSize=3&pageNum=1'
+
+To logout from current account:
+curl -X POST 'http://47.88.57.165/user/logout'
+
+To see what products shopping cart have(must login first):
+curl -X GET 'http://47.88.57.165/cart/list'
+
+To load and display all categorys:
+curl -X GET 'http://47.88.57.165/category/list'
+
+To see all products in stock:
+curl -X GET 'http://47.88.57.165/product/list?pageSize=20'
+
+To see a specific product details via its ID:
+curl -X GET 'http://47.88.57.165/product/detail?id=39'
+
+To search all products with name contains 'sweet':
+curl -X GET 'http://47.88.57.165/product/list?keyword=sweet&orderBy=price+asc&categoryId=&pageSize=20&pageNum=1'
+
+To add a new product(s) into shopping cart:
+curl -X POST 'http://47.88.57.165/cart/add?productId=38&count=1'
+
+To create a new order:
+curl -X POST 'http://47.88.57.165/order/create'
+
+To see the order details(you can only check orders that are created by current account, this is to prevent Broken Access Control):
+curl -X GET 'http://47.88.57.165/order/detail?orderNo=2022121623532975803'
+
+To generate a new QR code for paying(this functionality is removed from project, as we cannot make a real payment now(we could, but you will get charge for real, so..)):
+curl -X GET 'http://47.88.57.165/order/qrcode?orderNo=2022121623544575803'
+
+To comfirm the order is completed(for user, you should comfirm when you receive your product):
+curl -X POST 'http://47.88.57.165/order/finish?orderNo=2022121623544575803'
+
+
+
+
+
+for manage system:
+To access project manage system:
+curl -X GET 'http://47.88.57.165/admin/index.html'
+
+To login the system with account userName=eecs4413, password=12345678:
+curl -X GET 'http://47.88.57.165/adminLogin?userName=eecs4413&password=12345678'
+
+To login the system with account under JWT: userName=eecs4413, password=12345678:
+curl -X GET 'http://47.88.57.165/loginWithJwt?userName=eecs4413&password=12345678'
+
+To see all products:
+curl -X GET 'http://47.88.57.165/admin/product/list?pageNum=1&pageSize=10'
+
+To see all orders:
+curl -X GET 'http://47.88.57.165/admin/order/list?pageNum=1&pageSize=10'
+
+To see over all order statistics figure:
+curl -X GET 'http://47.88.57.165/admin/order/statistics?startDate=2019-02-01&endDate=2030-10-01'
+
+To make a order ship(you cannot make it actually ship, as we disable the payment module):
+curl -X POST 'http://47.88.57.165/admin/order/delivered?orderNo=2022121623544575803'
+
+To comfirm the order is completed(for admin, you should comfirm after user confirm their order):
+curl -X POST 'http://47.88.57.165/order/finish?orderNo=2022121623544575803'
+
+To update current category, please try yourself in HTML page via browser in order to get full manage experience:
+curl -X POST 'http://47.88.57.165/admin/category/update
+
+To add a new category into current category:
+curl -X POST 'http://47.88.57.165/admin/category/add'
+
+To delete a current exists category:
+curl -X POST 'http://47.88.57.165/admin/category/delete?id=29'
+
+To add a new product into current stock:
+curl -X POST 'http://47.88.57.165/admin/product/add'
+
+
+
+
